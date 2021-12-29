@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View,Button } from 'react-native';
 
 export default function App() {
+  const [order,setOrder] = useState('this is favorite');
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>{order}</Text>
+      <Button title="change" onPress={()=>setOrder('no')}/>
       <StatusBar style="auto" />
     </View>
   );
