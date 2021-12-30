@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { StyleSheet, View, Button, TextInput, Text,ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Button,
+  TextInput,
+  Text,
+  ScrollView,
+  FlatList,
+} from "react-native";
 
 export default function App() {
   const [text, setText] = useState("");
@@ -9,7 +17,10 @@ export default function App() {
   };
 
   const addHandler = () => {
-    setText2((text2) => [...text2, text]);
+    setText2((text2) => [
+      ...text2,
+      { id: Math.random().toString(), value: text },
+    ]);
   };
   return (
     <View style={styles.screen}>
@@ -22,13 +33,15 @@ export default function App() {
         />
         <Button title="ADD" onPress={addHandler} />
       </View>
-      <ScrollView>
-        {text2.map((item) => (
-          <View key={item} style={styles.addItem}>
-            <Text>{item}</Text>
+      <FlatList
+      keyExtractor={(item, index) => item.id}
+        data={text2}
+        renderItem={(itemData) => (
+          <View style={styles.addItem}>
+            <Text>{itemData.item.value}</Text>
           </View>
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 }
