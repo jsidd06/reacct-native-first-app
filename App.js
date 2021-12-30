@@ -18,7 +18,7 @@ export default function App() {
         <Button title="ADD" onPress={addHandler} />
       </View>
       <View >
-        {text2.map((item) => <Text>{item}</Text>)}
+        {text2.map((item) => <Text key={item}>{item}</Text>)}
         </View>
     </View>
   );
