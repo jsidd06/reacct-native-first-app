@@ -1,25 +1,34 @@
 import { useState } from "react";
-import { StyleSheet, View, Button, TextInput,Text } from "react-native";
+import { StyleSheet, View, Button, TextInput, Text,ScrollView } from "react-native";
 
 export default function App() {
   const [text, setText] = useState("");
   const [text2, setText2] = useState([]);
   const inputHandler = (enterText) => {
     setText(enterText);
-  }
+  };
 
   const addHandler = () => {
-    setText2(text2 => [...text2, text]);
-  }
+    setText2((text2) => [...text2, text]);
+  };
   return (
     <View style={styles.screen}>
       <View style={styles.inputField}>
-        <TextInput placeholder="Enter your name" value={text} style={styles.textInput} onChangeText={inputHandler} />
+        <TextInput
+          placeholder="Enter your name"
+          value={text}
+          style={styles.textInput}
+          onChangeText={inputHandler}
+        />
         <Button title="ADD" onPress={addHandler} />
       </View>
-      <View >
-        {text2.map((item) => <Text key={item}>{item}</Text>)}
-        </View>
+      <ScrollView>
+        {text2.map((item) => (
+          <View key={item} style={styles.addItem}>
+            <Text>{item}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -36,5 +45,12 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     textAlign: "center",
+  },
+  addItem: {
+    padding: 10,
+    borderColor: "black",
+    borderWidth: 1,
+    marginVertical: 10,
+    width: "40%",
   },
 });
