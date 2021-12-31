@@ -1,18 +1,13 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const Item = (props) => {
   return (
-      <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
+    <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
       <View style={styles.addItem}>
         <Text>{props.title}</Text>
       </View>
-        </TouchableOpacity>
+    </TouchableOpacity>
   );
 };
 
@@ -23,6 +18,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginVertical: 10,
     width: "40%",
+
+    backgroundColor: "grey",
   },
 });
 

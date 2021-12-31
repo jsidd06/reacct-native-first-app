@@ -8,9 +8,9 @@ const Input = (props) => {
   };
 
   const addHandler = () => {
-      props.submitArg(text);
-        setText("");
-  }
+    props.submitArg(text);
+    setText("");
+  };
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputField}>
@@ -20,8 +20,15 @@ const Input = (props) => {
           style={styles.textInput}
           onChangeText={inputHandler}
         />
-        <Button title="Cancel" color="red" onPress={props.onCancel} />
-        <Button title="ADD" onPress={addHandler} />
+
+        <View style={styles.buttonContainer}>
+          <View style={styles.buttonSize}>
+            <Button title="Cancel" color="red" onPress={props.onCancel} />
+          </View>
+          <View style={styles.buttonSize}>
+            <Button title="ADD" onPress={addHandler} />
+          </View>
+        </View>
       </View>
     </Modal>
   );
@@ -39,6 +46,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     textAlign: "center",
     marginBottom: 10,
+    
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "60%",
+  },
+  buttonSize: {
+    width: "40%",
   },
 });
 
