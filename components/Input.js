@@ -6,6 +6,11 @@ const Input = (props) => {
   const inputHandler = (enterText) => {
     setText(enterText);
   };
+
+  const addHandler = () => {
+      props.submitArg(text);
+        setText("");
+  }
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputField}>
@@ -15,7 +20,8 @@ const Input = (props) => {
           style={styles.textInput}
           onChangeText={inputHandler}
         />
-        <Button title="ADD" onPress={props.submitArg.bind(this, text)} />
+        <Button title="Cancel" color="red" onPress={props.onCancel} />
+        <Button title="ADD" onPress={addHandler} />
       </View>
     </Modal>
   );

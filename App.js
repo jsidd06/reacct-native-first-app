@@ -18,7 +18,7 @@ export default function App() {
       { id: Math.random().toString(), value: titleAdd  }, 
       ...text2
     ]);
-
+    setAddMode(false);
   };
 
   const deleteHandler = id => {
@@ -26,10 +26,14 @@ export default function App() {
       return text2.filter(item => item.id != id);
     });
   }
+
+  const cancelHandler = () => {
+    setAddMode(false);
+  }
   return (
     <View style={styles.screen}>
       <Button title="Add New Title" onPress={() => setAddMode(true)} />
-     <Input submitArg={addHandler} visible={addMode} />
+     <Input submitArg={addHandler} visible={addMode} onCancel={cancelHandler} />
       <FlatList
       keyExtractor={(item, index) => item.id}
         data={text2}
