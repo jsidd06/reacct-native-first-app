@@ -8,6 +8,7 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
+import Item from "./components/Item";
 
 export default function App() {
   const [text, setText] = useState("");
@@ -18,8 +19,8 @@ export default function App() {
 
   const addHandler = () => {
     setText2((text2) => [
-      ...text2,
-      { id: Math.random().toString(), value: text },
+      { id: Math.random().toString(), value: text }, 
+      ...text2
     ]);
   };
   return (
@@ -36,11 +37,7 @@ export default function App() {
       <FlatList
       keyExtractor={(item, index) => item.id}
         data={text2}
-        renderItem={(itemData) => (
-          <View style={styles.addItem}>
-            <Text>{itemData.item.value}</Text>
-          </View>
-        )}
+        renderItem={itemData => < Item title={itemData.item.value} />} 
       />
     </View>
   );
@@ -59,11 +56,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     textAlign: "center",
   },
-  addItem: {
-    padding: 10,
-    borderColor: "black",
-    borderWidth: 1,
-    marginVertical: 10,
-    width: "40%",
-  },
+  
 });
