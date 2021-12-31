@@ -16,14 +16,21 @@ export default function App() {
       { id: Math.random().toString(), value: titleAdd  }, 
       ...text2
     ]);
+    
   };
+
+  const deleteHandler = id => {
+    setText2(text2 => {
+      return text2.filter(item => item.id != id);
+    });
+  }
   return (
     <View style={styles.screen}>
      <Input submitArg={addHandler} />
       <FlatList
       keyExtractor={(item, index) => item.id}
         data={text2}
-        renderItem={itemData => < Item title={itemData.item.value} />} 
+        renderItem={itemData => < Item id={itemData.item.id} onDelete={deleteHandler} title={itemData.item.value} />} 
       />
     </View>
   );

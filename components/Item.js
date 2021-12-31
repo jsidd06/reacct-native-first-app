@@ -2,14 +2,17 @@ import React from "react";
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from "react-native";
 
 const Item = (props) => {
   return (
+      <TouchableOpacity onPress={props.onDelete.bind(this, props.id)}>
       <View style={styles.addItem}>
         <Text>{props.title}</Text>
       </View>
+        </TouchableOpacity>
   );
 };
 
