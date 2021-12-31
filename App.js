@@ -3,12 +3,14 @@ import {
   StyleSheet,
   View,
   FlatList,
+  Button,
 } from "react-native";
 import Item from "./components/Item";
 import Input from "./components/Input";
 
 export default function App() {
   const [text2, setText2] = useState([]);
+  const [addMode, setAddMode] = useState(false);
   
 
   const addHandler = titleAdd => {
@@ -16,7 +18,7 @@ export default function App() {
       { id: Math.random().toString(), value: titleAdd  }, 
       ...text2
     ]);
-    
+
   };
 
   const deleteHandler = id => {
@@ -26,7 +28,8 @@ export default function App() {
   }
   return (
     <View style={styles.screen}>
-     <Input submitArg={addHandler} />
+      <Button title="Add New Title" onPress={() => setAddMode(true)} />
+     <Input submitArg={addHandler} visible={addMode} />
       <FlatList
       keyExtractor={(item, index) => item.id}
         data={text2}

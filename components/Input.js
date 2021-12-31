@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button,View,TextInput,StyleSheet } from "react-native";
+import { Button,View,TextInput,StyleSheet,Modal } from "react-native";
 
 const Input = props => {
     
@@ -8,6 +8,7 @@ const Input = props => {
     setText(enterText);
   };
     return (
+        <Modal visible={props.visible} animationType="slide">
         <View style={styles.inputField}>
         <TextInput
           placeholder="Enter your name"
@@ -17,6 +18,7 @@ const Input = props => {
         />
         <Button title="ADD" onPress={props.submitArg.bind(this,text)} />
       </View>
+      </Modal>
     )
 }
 
